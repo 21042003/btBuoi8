@@ -36,11 +36,14 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: SizedBox(
             width: 44,
             height: 44,
-            child: Center(
-              child: Image.asset(
-                AppIcons.input,
-                width: 29,
-                height: 29,
+            child: InkWell(
+              mouseCursor: SystemMouseCursors.click,
+              child: Center(
+                child: Image.asset(
+                  AppIcons.input,
+                  width: 29,
+                  height: 29,
+                ),
               ),
             ),
           ),

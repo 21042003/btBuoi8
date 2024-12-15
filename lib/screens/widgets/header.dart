@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 class Header extends StatelessWidget {
   const Header({
     required this.title,
+    required this.onSeeAllTap,
     super.key,
   });
 
   final String title;
+
+  final VoidCallback onSeeAllTap;
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +31,18 @@ class Header extends StatelessWidget {
               ),
             ),
           ),
-          const Text(
-            'See All',
-            style: TextStyle(
-                fontSize: 16,
-                color: AppColors.hexBA83DE
+          GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            onTap: onSeeAllTap,
+            child: const InkWell(
+              mouseCursor: SystemMouseCursors.click,
+              child: Text(
+                'See All',
+                style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.hexBA83DE
+                ),
+              ),
             ),
           )
         ],

@@ -1,13 +1,11 @@
+import 'package:baitap5/Home_drawer/Display_tasks.dart';
 import 'package:baitap5/data/task_model.dart';
 import 'package:baitap5/data/task_priority.dart';
 import 'package:baitap5/data/task_status.dart';
 import 'package:baitap5/materias/colors_app.dart';
-import 'package:baitap5/screens/task_material/Create_task_screen.dart';
-import 'package:baitap5/screens/widgets/add_button.dart';
 import 'package:baitap5/screens/widgets/header.dart';
 import 'package:baitap5/screens/widgets/home_app.dart';
 import 'package:baitap5/screens/widgets/progress_bar.dart';
-import 'package:baitap5/screens/widgets/search_field.dart';
 import 'package:baitap5/screens/widgets/task_item.dart';
 import 'package:flutter/material.dart';
 
@@ -125,12 +123,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     horizontal: 20,
                   ),
                 ),
-                const Header(title: 'Progress'),
+                Header(
+                  title: 'Progress',
+                  onSeeAllTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => DisplayTasks(
+                          tasks: tasks,
+                        ),
+                      ),
+                    );
+                  },
+                ),
                 Progress(
                   numberOfCompletedTask: numberOfCompletedTodayTask,
                   numberOfTasks: todayTasks.length,
                 ),
-                const Header(title: "Today's Task"),
+                Header(
+                  title: "Today's Task",
+                  onSeeAllTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => DisplayTasks(
+                          tasks: tasks,
+                        ),
+                      ),
+                    );
+                  },
+                ),
                 ListView.builder(
                   padding: EdgeInsets.zero,
                   physics: const NeverScrollableScrollPhysics(),
@@ -151,7 +171,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: todayTasks.length,
                   shrinkWrap: true,
                 ),
-                const Header(title: "Tomorrow Task"),
+                Header(
+                  title: "Tomorrow Task",
+                  onSeeAllTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => DisplayTasks(
+                          tasks: tasks,
+                        ),
+                      ),
+                    );
+                  },
+                ),
                 ListView.builder(
                   padding: EdgeInsets.zero,
                   physics: const NeverScrollableScrollPhysics(),
@@ -160,35 +191,24 @@ class _HomeScreenState extends State<HomeScreen> {
                       taskModel: tomorrowTasks[index],
                       onStatusChanged: (taskStatus) {
                         final taskIndex = tasks.indexWhere(
-                          (e) => e.id == todayTasks[index].id,
+                          (e) => e.id == tomorrowTasks[index].id,
                         );
                         setState(() {
-                          tasks[taskIndex] = todayTasks[index]
+                          tasks[taskIndex] = tomorrowTasks[index]
                               .copyWith(taskStatus: taskStatus);
                         });
                       },
                     );
                   },
-                  itemCount: todayTasks.length,
+                  itemCount: tomorrowTasks.length,
                   shrinkWrap: true,
                 ),
                 const SizedBox(
-                  height: 110,
+                  height: 50,
                 ),
               ],
             ),
           ),
-        ),
-        floatingActionButton: AddButton(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return const CreateTaskScreen();
-                },
-              ),
-            );
-          },
         ),
       ),
     );

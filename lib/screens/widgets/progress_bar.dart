@@ -64,9 +64,9 @@ class Progress extends StatelessWidget {
                   ),
                 ),
               ),
-              const Text(
-                '66%',
-                style: TextStyle(
+               Text(
+                '${(numberOfCompletedTask * 33 + 1)}%',
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,
                 ),

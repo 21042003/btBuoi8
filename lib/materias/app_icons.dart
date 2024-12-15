@@ -13,5 +13,5 @@ class AppIcons {
   static const input = 'assets/icons/pluter.png';
   static const vector1 = 'assets/icons/vectorleft.png';
   static const vector2 = 'assets/icons/Vectorright.png';
-
+  static const pen = 'assets/icons/pens.png';
 }
