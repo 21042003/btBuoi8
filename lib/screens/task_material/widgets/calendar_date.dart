@@ -131,6 +131,7 @@ class _DatePickerState extends State<DatePicker> {
                 onDateSelected: (date) {
                   setState(() {
                     _selectedDate = date;
+                    widget.onDateChanged.call(date);
                   });
                 },
               );

@@ -1,5 +1,7 @@
 import 'package:baitap5/materias/app_icons.dart';
 import 'package:baitap5/materias/colors_app.dart';
+import 'package:baitap5/screens/task_material/Create_task_screen.dart';
+import 'package:baitap5/screens/task_material/time_of_day.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -27,7 +29,7 @@ class _TimePickerState extends State<TimePicker> {
   @override
   void initState() {
     super.initState();
-    controller.text = formatTimeOfDay(widget.time);
+    controller.text = widget.time.formatTimeOfDay();
   }
 
   @override
@@ -72,7 +74,7 @@ class _TimePickerState extends State<TimePicker> {
             );
             if (selectedTime != null) {
               widget.onTimeChanged.call(selectedTime);
-              controller.text = formatTimeOfDay(selectedTime);
+              controller.text = selectedTime.formatTimeOfDay();
             }
           },
           decoration: InputDecoration(
@@ -100,19 +102,5 @@ class _TimePickerState extends State<TimePicker> {
         ),
       ],
     );
-  }
-
-  String formatTimeOfDay(TimeOfDay timeOfDay) {
-    final now = DateTime.now();
-
-    final dateTime = DateTime(
-      now.year,
-      now.month,
-      now.day,
-      timeOfDay.hour,
-      timeOfDay.minute,
-    );
-    final format = DateFormat.jm();
-    return format.format(dateTime);
   }
 }

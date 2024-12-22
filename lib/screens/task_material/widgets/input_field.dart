@@ -6,6 +6,8 @@ class InputField extends StatefulWidget{
 
   final ValueChanged<String> onChanged;
 
+  final String? initialValue;
+
   final int maxLines;
 
      const InputField({
@@ -13,6 +15,7 @@ class InputField extends StatefulWidget{
        required this.hintText,
        required this.onChanged,
        required this.maxLines,
+       required this.initialValue,
 });
 
   @override
@@ -21,7 +24,13 @@ class InputField extends StatefulWidget{
 }
 
 class _InputFieldState extends State<InputField>{
-  final _controller = TextEditingController();
+  late TextEditingController _controller;
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.initialValue);
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(

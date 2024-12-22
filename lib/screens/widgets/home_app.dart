@@ -1,7 +1,6 @@
 import 'package:baitap5/materias/app_icons.dart';
 import 'package:baitap5/materias/colors_app.dart';
 import 'package:baitap5/materias/images.dart';
-import 'package:baitap5/screens/widgets/search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -68,23 +67,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           width: 20,
         ),
       ],
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(82),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 12,
-            horizontal: 20,
-          ),
-          child: SearchField(
-            hintText: "Search Task Here",
-            onChanged: onSearchChanged,
-          ),
-        ),
-      ),
       centerTitle: false,
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(150);
+  Size get preferredSize => const Size.fromHeight(70);
 }

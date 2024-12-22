@@ -44,7 +44,7 @@ class Progress extends StatelessWidget {
             height: 10,
           ),
           Text(
-            '2/3 Task Completed',
+            '$numberOfCompletedTask/$numberOfTasks Task Completed',
             style: TextStyle(
               color: Colors.white.withOpacity(0.8),
               fontSize: 16,
@@ -65,7 +65,7 @@ class Progress extends StatelessWidget {
                 ),
               ),
                Text(
-                '${(numberOfCompletedTask * 33 + 1)}%',
+                '${(numberOfCompletedTask / numberOfTasks * 100).floor()}%',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,

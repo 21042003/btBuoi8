@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:baitap5/data/task_priority.dart';
 import 'package:baitap5/data/task_status.dart';
@@ -14,21 +15,21 @@ class TaskModel {
     required this.taskStatus,
   });
 
-  final int id;
+  final String id;
   final String name;
   final String description;
-  final DateTime startTime;
-  final DateTime endTime;
+  final TimeOfDay startTime;
+  final TimeOfDay endTime;
   final DateTime date;
   final TaskPriority priority;
   final TaskStatus taskStatus;
 
   TaskModel copyWith({
-    int? id,
+    String? id,
     String? name,
     String? description,
-    DateTime? startTime,
-    DateTime? endTime,
+    TimeOfDay? startTime,
+    TimeOfDay? endTime,
     DateTime? date,
     TaskPriority? priority,
     TaskStatus? taskStatus,

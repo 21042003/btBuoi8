@@ -1,25 +1,36 @@
 import 'package:baitap5/common_widgets/primary_app_bar.dart';
 import 'package:baitap5/data/task_model.dart';
 import 'package:baitap5/materias/colors_app.dart';
+import 'package:baitap5/screens/task_material/argument_task/all_tasks_screen_arguments.dart';
+import 'package:baitap5/screens/task_material/argument_task/task_screen_arguments.dart';
 import 'package:baitap5/screens/widgets/task_item.dart';
 import 'package:flutter/material.dart';
 
 class DisplayTasks extends StatefulWidget {
-  final List<TaskModel> tasks;
+  static const routeName = '/all-tasks';
 
   const DisplayTasks({
     super.key,
-    required this.tasks,
+    required this.arguments,
   });
+
+  final AllTasksScreenArguments arguments;
 
   @override
   State<DisplayTasks> createState() => _DisplayTasksState();
 }
 
 class _DisplayTasksState extends State<DisplayTasks> {
+  late List<TaskModel> allTasks;
+
+  @override
+  void initState() {
+    super.initState();
+    allTasks = widget.arguments.tasks;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final allTasks = widget.tasks;
 
     final todayTasks = allTasks.where((task) {
       return DateUtils.isSameDay(
@@ -50,7 +61,7 @@ class _DisplayTasksState extends State<DisplayTasks> {
           body: Column(
             children: [
               const TabBar(
-                indicatorColor: AppColors.hexD7F0FF,
+                indicatorColor: AppColors.hexDE83B0,
                 indicatorWeight: 2,
                 indicatorSize: TabBarIndicatorSize.tab,
                 labelColor: AppColors.hexDE83B0,
@@ -66,7 +77,8 @@ class _DisplayTasksState extends State<DisplayTasks> {
                 ],
               ),
               Expanded(
-                child: TabBarView(children: [
+                child: TabBarView(
+                  children: [
                   _buildTabBarContentView(tasks: allTasks),
                   _buildTabBarContentView(tasks: todayTasks),
                   _buildTabBarContentView(tasks: tomorrowTasks),
@@ -88,6 +100,7 @@ class _DisplayTasksState extends State<DisplayTasks> {
         return TaskItem(
           taskModel: tasks[index],
           onStatusChanged: (taskStatus) {},
+          onTap: () {  },
         );
       },
       itemCount: tasks.length,
